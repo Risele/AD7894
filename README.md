@@ -4,7 +4,7 @@ Do not forget about the reference voltage source (+2.5V). Voltage divider, conne
 
 This version operates with all 4 data pins at the ADC (3-wire serial + BUSY) without interrupts. If you want to use interrupts (BUSY pin could provide interrupt at the falling edge), than use functions from the private field: BeginConversion() and ADCread();
 
-Class constructor requires number of pins ADC connected to:
+Class constructor requires numbers of pins ADC connected to:
 SCLK, SDATA, BUSY, CONVST. The default values are 5,2,3,4. If you connected your ADC to those pins, you can use just \<AD7894 myADC\>;
 
 Only 3 functions are available:  
