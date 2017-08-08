@@ -48,10 +48,7 @@ float AD7894::GetVoltage()
 {
 	if (_Error!=WrongPins)
 	{
-		//Start convertion at Auto Sleep mode
-		
-		digitalWrite(_CONVST,HIGH);
-		digitalWrite(_CONVST,LOW);
+		BeginConversion();
 		//Wait before convertion ends
 		uint32_t startT = millis();
 		while((digitalRead(_BUSY) == HIGH) && ((millis()-startT)<_Timeout))
@@ -81,7 +78,7 @@ uint8_t AD7894::GetError()
 	return (uint8_t)_Error;
 }
 
-float AD7894::ADCread();
+float AD7894::ADCread()
 {
 	int16_t RawValue = 0;
 	for (uint8_t i = 0; i<16; i++)
@@ -102,4 +99,10 @@ float AD7894::ADCread();
 	}
 	RawValue^=0x2000; //Convert according to twos compliment (recommended at http://community.silabs.com/t5/8-bit-MCU/convert-two-compliment-numbers/td-p/8015)
 	return ((float)(RawValue-8192))*0.00122;
+}
+
+void AD7894::BeginConversion()
+{
+	digitalWrite(_CONVST,HIGH);
+	digitalWrite(_CONVST,LOW);
 }
