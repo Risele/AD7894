@@ -1,6 +1,6 @@
 # AD7894
 Arduino library for an Analog Devices ADC AD7894 - 10, 14 bit ADC with ±10V range.
-Do not forget about the reference voltage source (+2.5V).
+Do not forget about the reference voltage source (+2.5V). Voltage divider, connected to internal Arduino source provides too much noise.
 
 This version operates with all 4 data pins at the ADC (3-wire serial + BUSY) without interrupts. If you want to use interrupts (BUSY pin could provide interrupt at the falling edge), than use functions from the private field: BeginConversion() and ADCread();
 
